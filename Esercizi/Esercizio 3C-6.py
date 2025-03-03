@@ -83,7 +83,7 @@ dati={"nome":animale, "categoria": animal_type, "habitat": habitat}
 match (dati['nome'], dati['categoria'], dati['habitat']):
     case (animale, animal_type, "terra") if (animal_type=="Mammiferi" and (animale!="delfino" and animale!="balena")) or animal_type=="Rettili" or animal_type=="Uccelli":
         print(f"L'animale {animale} può vivere sulla terra!")
-    case (animale, animal_type, "acqua") if (animale=="balena" or animale=="delfino") or animal_type=="Pesci" or animal_type=="Rettili":
+    case (animale, animal_type, "acqua") if (animale=="balena" or animale=="delfino" or animale=="cigno" or animale=="anatra") or animal_type=="Pesci" or animal_type=="Rettili":
         print(f"L'animale {animale} può vivere nell'acqua!")
     case (animale, animal_type, "aria") if animal_type=="Uccelli" and animale!="gallina" and animale!="tacchino":
         print(f"L'animale {animale} può vivere in aria!")
