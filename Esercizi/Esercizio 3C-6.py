@@ -85,7 +85,7 @@ match (dati['nome'], dati['categoria'], dati['habitat']):
         print(f"L'animale {animale} può vivere sulla terra!")
     case (animale, animal_type, "acqua") if (animale=="balena" or animale=="delfino") or animal_type=="Pesci" or animal_type=="Rettili":
         print(f"L'animale {animale} può vivere nell'acqua!")
-    case (_, animal_type, "aria") if animal_type=="Uccelli":
+    case (animale, animal_type, "aria") if animal_type=="Uccelli" and animale!="gallina" and animale!="tacchino":
         print(f"L'animale {animale} può vivere in aria!")
     case (_, "Unknown", _):
         print("Non so dirti dove vive questo animale")
