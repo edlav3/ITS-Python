@@ -25,7 +25,7 @@ while risposta!="no":
     prezzo=float(input("Prezzo:  "))
     sconto=str(input("L'articolo è scontato? Digita 'si' o 'no': "))
     if sconto=="si":
-        valoresconto=float(input("Di quanto è lo sconto?\nInserisci il valore in decimale, esempio: se lo sconto è del 20%, inserisci 0.2\nSconto:"))
+        valoresconto=float(input("Di quanto è lo sconto?\nInserisci il valore in decimale, esempio: se lo sconto è del 20%, inserisci 0.2\nSconto: "))
         prezzo=prezzo-(prezzo*valoresconto)
         quanti=int(input(f"Quanti articoli {nomeprodotto} vuoi acquistare: "))
         carrello[nomeprodotto]=quanti
@@ -47,4 +47,4 @@ for i in range(len(nomi)):
 
 
 
-print(f"Per un totale è di {totale:.2f}€")
+print(f"\nPer un totale è di {totale:.2f}€")
