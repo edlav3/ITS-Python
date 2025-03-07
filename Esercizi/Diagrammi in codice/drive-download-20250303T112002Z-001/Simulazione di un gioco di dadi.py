@@ -17,8 +17,8 @@ d2=1
 somma=0 
 
 while d1>0 and d1<7 and d2>0 and d2<7:
-    d1=int(input("Lancio del primo dado:"))
-    d2=int(input("Lancio del secondo dado:"))
+    d1=int(input("Lancio del primo dado: "))
+    d2=int(input("Lancio del secondo dado: "))
     somma=d1+d2
     if somma<2 or somma>12:
         print("Un dado ha da 1 a 6 facce")
@@ -29,10 +29,10 @@ while d1>0 and d1<7 and d2>0 and d2<7:
         break
     elif d1==6 or d2==6 or somma==7:
         punteggio+=10
-        print("Hai guadagnato 10 punti")
-        print(f"Punteggio={punteggio}")
-        print("Rigiochiamo!")
+        print("\nHai guadagnato 10 punti")
+        print(f"Punteggio = {punteggio}")
+        print("Rigiochiamo!\n")
     else:
         punteggio=0
-        print(f"Spiacente, hai perso. Punteggio={punteggio}")
+        print(f"Punteggio = {punteggio}\nSpiacente, hai perso.")
         break

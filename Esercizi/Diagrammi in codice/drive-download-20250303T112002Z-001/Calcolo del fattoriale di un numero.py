@@ -1,7 +1,10 @@
-x=int(input("Dammi un numero:"))
+while True:
+    n=int(input("Dammi un numero, calcolerò il fattoriale: "))
+    if n<0:
+        print("Numero non valido")
+    else:
+        break
 fattoriale=1
-i=x
-while i>1:
-    fattoriale=fattoriale*i
-    i=i-1
-print(f"Il fattoriale di {x} è {fattoriale}")
+for i in range(1, n+1):
+    fattoriale*=i
+print(f"Il fattoriale di {n} è: {fattoriale}")

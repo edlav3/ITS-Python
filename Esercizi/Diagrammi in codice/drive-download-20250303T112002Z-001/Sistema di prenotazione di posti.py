@@ -7,7 +7,7 @@ se l'utente inserisce "visualizza", mostra il numero dei posti liberi e il numer
 se l'utente inserisce "esci", termina l'algoritmo.
 Torna all'inserimento di una opzione finché l'utente non seleziona "esci".'''
 
-print("Ti permetterò di gestire la prenotazione dei posti in una sala che contiene 20 sedie libere.")
+print("Ti permetterò di gestire la prenotazione dei posti in una sala contenente 20 sedie.")
 libere=20
 occupate=0
 esito=str(input("Digita:\n'prenota' per prenotare un posto,\n'libera' per liberare un posto,\n'visualizza' per vedere lo stato dei posti,\n'esci' per terminare: "))
