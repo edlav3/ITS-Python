@@ -8,8 +8,8 @@ quanti=0
 media=0
 somma=0
 risposta=""
-while True:
-    risposta=input("Vuoi inserire un voto? Digita 'SI' o 'NO'")
+while risposta!="NO":
+    risposta=input("Vuoi inserire un voto? Digita 'SI' o 'NO': ")
     if risposta == "SI":
         voto=int(input("Voto: "))
         if voto>0:

@@ -1,3 +1,10 @@
+'''Progettare un algoritmo che chieda all'utente di inserire un valore x positivo. Se x è negativo,
+l'algoritmo mostra un messaggio di errore e termina. Se x  è positivo, il programma deve consentire all'utente di inserire 10 numeri sia positivi che negativi. 
+
+Se x è pari, allora dei numeri inseriti devono essere sommati solamente i numeri che sono maggiori della metà di x. 
+Se, invece, x è dispari, dei numeri inseriti devono essere sommati solo i numeri che sono minori di x. 
+'''
+
 x = int(input("Dammi un numero\n"))
 somma=0
 if x>0:

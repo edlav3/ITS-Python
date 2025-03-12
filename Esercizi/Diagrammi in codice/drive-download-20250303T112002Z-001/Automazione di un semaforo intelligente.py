@@ -16,5 +16,3 @@ else:
     time_ns = (nord_sud / (nord_sud+est_ovest)) * 100
     time_eo = (est_ovest / (est_ovest+nord_sud)) * 100
 print(f"La spartizione del semaforo sarà la seguente:\n{time_ns:.2f}% per direzione nord-sud\n{time_eo:.2f}% per la direzione est-ovest\n")
-
-    

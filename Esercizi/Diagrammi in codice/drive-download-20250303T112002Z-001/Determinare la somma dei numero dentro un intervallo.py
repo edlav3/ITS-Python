@@ -17,4 +17,4 @@ elif a<b:
         i+=1
     print(f"La somma dei valori compresi tra {b} e {a} è {somma}")
 else:
-    print(f"{b} è minore o uguale di {a}")
+    print(f"{b} è minore o uguale a {a}")

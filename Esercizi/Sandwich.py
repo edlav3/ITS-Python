@@ -18,3 +18,6 @@ while aggiungi!="no":
 
 print("\nIl sandwich si compone di:")
 sandwich(elementi)
+
+lista=["madonna", "gesù", "padre Pio"]
+sandwich(lista)
