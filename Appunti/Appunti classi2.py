@@ -17,12 +17,19 @@ class Studente:  #parole chiave per creare una classe
     
     def schedapersonale(self):
         print(f"Scheda studente:\nNome: {self.nome}\nCognome: {self.cognome}\nCorso: {self.corso}\n")
+    
+    
+    #METODI SPECIALI
 
+    def __str__(self):
+        return f"{self.nome}, {self.cognome}"
+
+
+p=Studente("Mario", "Rossi", "Cyber")
+print(p)    # output = stringa ritornata dal metodo speciale __str__, non serve specificare altri metodi
 
 studente1=Studente("Paolo", "Brosio", "Cybersecurity")
 studente2=Studente("Luisa", "Pistolesi", "Scienze politiche") # andiamo a dichiare due entità 'studente' in cui passiamo i parametri che abbiamo prestabilito
-print(studente1)
-print(studente2) # stampando le due entità vediamo due codici di allocazione di memoria => sono varibili diverse
 
 studente1.schedapersonale()
 studente2.schedapersonale()  # invocando l'apposito metodo della classe riesco a visualizzare i dati
@@ -35,3 +42,7 @@ Studente.schedapersonale(studente1)
 @classmethod   # --> ho definito un metodo di classe, che mi permette di accedere agli attributi di classe cls
 def aggiungi_persona(cls, nome_persona:str):
     cls.nome_persona= nome_persona
+
+
+
+'''====================================================='''

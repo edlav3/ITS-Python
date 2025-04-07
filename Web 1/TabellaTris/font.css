@@ -1,0 +1,29 @@
+.size{
+    font-size: 500%;
+}
+
+.tabella {
+    width: 400px; /* Imposta la larghezza della tabella al 100% del contenitore */
+    height: 400px; /* Imposta l'altezza della tabella */
+    
+  }
+
+.riga {
+    text-align: center;
+    font-size: 300%;
+}
+
+.cellacentro {
+    padding: 0px; /* Distanza interna delle celle */
+    border: 3px solid black; /* Bordo delle celle */
+  }
+
+.cellaTB {
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+}
+
+.cellaRL{
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+}
