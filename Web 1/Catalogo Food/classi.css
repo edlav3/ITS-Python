@@ -1,0 +1,22 @@
+.font1{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 140%;
+    color : black
+    
+}
+
+.font2{
+    font-size: 120%;
+    line-height: 1.5;
+}
+
+.titoli{
+    font-family: "Gill Sans Extrabold", sans-serif;
+    font-size: 300%;
+    color: rgb(151, 23, 23)
+}
+
+.indirizzo{
+    font-size: 80%;
+}
