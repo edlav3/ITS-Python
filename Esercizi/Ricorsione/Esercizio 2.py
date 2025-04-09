@@ -9,6 +9,6 @@ def compoundInterest(denaro:int, mesi:int) -> float:
         return denaro
     else:
         return tassa*compoundInterest(denaro, mesi-1)
-    
 
-print(compoundInterest(1000, 12))
+
+print(compoundInterest(1000, 4))
