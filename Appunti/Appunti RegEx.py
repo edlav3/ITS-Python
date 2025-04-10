@@ -23,7 +23,7 @@ Le RegEx hanno una serie id elementi, le prima che  andremo a vedere sono le Anc
     
 --- "?" -> 
 
---- "{n}" -> COnta quante volte compare una stringa:
+--- "{n}" -> Conta quante volte compare una stringa:
     Esempio: abc{3}, considera "abccc" / a(bc){3}, considera "abcbcbc"
 
 --- "{n,}" -> Almeno n volte:

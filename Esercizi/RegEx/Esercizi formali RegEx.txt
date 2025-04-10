@@ -1,0 +1,18 @@
+1.
+    1.1. Scrivi una RegEx che riconosca un numero intero positivo (es. 123, 98765):
+        Soluzione: [0-9]+
+    1.2. Modifica la RegEx per accettare anche numeri negativi (es. -45, -1000, 0).
+        Soluzione: -?\d+
+        (Alternativa [-?0-9]+ non valida in quanto considerebbe anche stringhe del tipo --99, -100-)
+
+2.
+    2.1. Scrivi una RegEx che riconosca una parola composta solo da lettere minuscole.
+        Soluzione: [a-z]+
+    2.2. Adatta la RegEx per accettare parole con lettere maiuscole e minuscole.
+        Soluzione: [a-zA-Z]+
+        (Alternativa \D+ non valida in quando considera anche stringhe con spazi, caratteri speciali e emoji)
+
+3.
+    3.1. Scrivi una RegEx che riconosca email del tipo nome@dominio.com
+        Soluzione: [a-z0-9_]+@[a-zA-Z]+\.[a-z](2, 3)
+    3.2. Estendi la RegEx per accettare anche domini con più estensioni, es. nome@dominio.co.uk
