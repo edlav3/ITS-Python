@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
- 
+    <script src="java.js"></script>
 </head>
 <body bgcolor="lightgrey">
+    
     <form>
-    <input type="text" name="name" placeholder="Nome" maxlength="30" style="height: 20px;"><br><br>
-    <input type="text" name="name" placeholder="Cognome" maxlength="40" style="height: 20px;"><br><br>
-    <input type="text" name="name" placeholder="Matricola" maxlength="12" style="height: 20px;"><br><br>
-    <select style="height: 25px;" name="regione">
-        <option value="None">-- Regione --</option>
+    <input type="text" id="nome" placeholder="Nome" maxlength="30" style="height: 20px;"><br><br>
+    <input type="text" id="cognome" placeholder="Cognome" maxlength="40" style="height: 20px;"><br><br>
+    <input type="text" id="matricola" placeholder="Matricola" maxlength="12" style="height: 20px;"><br><br>
+    <select id="regione" style="height: 25px;">
+        <option value="">-- Regione --</option>
         <option value="Abruzzo">Abruzzo</option>
         <option value="Basilicata">Basilicata</option>
         <option value="Calabria">Calabria</option>
@@ -32,10 +33,12 @@
         <option value="Valle d'Aosta">Valle d'Aosta</option>
         <option value="Veneto">Veneto</option>
     </select><br><br>
-    <input type="text" name="telefono" placeholder="Telefono" maxlength="15" style="height: 20px;"><br><br>
-    <textarea name="richieste" rows="12" cols="60"></textarea><br><br>
-    <button style="font-size: 15px; cursor: pointer; color: black;">Invia</button><br><br>
+    <input type="text" id="telefono" placeholder="Telefono" maxlength="15" style="height: 20px;"><br><br>
+    <input type="text" id="mail" placeholder="E-mail" maxlength="15" style="height: 20px;"><br><br>
+    <textarea name="richieste" rows="12" cols="60" placeholder="Testo (facoltativo)"></textarea><br><br>
     <button type="reset" style="font-size: 15px; cursor: pointer; color: black;">Reset</button>
+    <button onclick="controllaCampo(); controllaRegione(); controllaNumeri()" style="font-size: 15px; cursor: pointer; color: black;">Invia</button>
+  
 </form>
 </body>
 </html>

@@ -1,0 +1,29 @@
+.casellainput{
+    height: 100px;
+    width: 400px;
+    font-size: 180%;
+}
+
+.aggiungi{
+    height: 70px;
+    width: 300px;
+    font-size: 180%;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 15px;
+}
+
+.elimina{
+    height: 50px;
+    width: 230px;
+    font-size: 150%;
+    background-color: rgb(201, 79, 79);
+    color: white;
+    border-radius: 15px;
+}
+
+.lista{
+    font-size: 40px;
+    margin-left: 100px;
+    list-style-type:square;
+}
