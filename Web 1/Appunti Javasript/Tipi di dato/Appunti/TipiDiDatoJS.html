@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // I tipi di dato in JS sono string, number, boolean, null e undefined
+
+        // 1 non si può dichiarare il tipo in JS, in quanto viene interpetato da solo
+        // 2 la dichiaraazione non è obbligatoria
+
+        // Ripercorrendo le fasi di JS:
+        // FASE 1 (fino al 2009):
+        var nome = "Mario";
+        var cognome = "Rossi";
+        var anagrafica = nome + cognome;
+        var nuovonome1= "il mio amico" + nome + "ha 27 anni"
+
+        // \n = nuova riga
+        // \r = nuova riga
+
+        // FASE 2 (dal 2009):
+        //(viene introdotto f-string)
+
+        let nuovonome = 'Mi chiamo ${nome}';
+        console.log(nuovonome)
+
+        // i numeri sono tutti oggetti:
+        let num = 21.23;
+        num.toFixed(2); // 'funzione' che visualizza arrtonda ai numeri decimali desiderati, torna una stringa
+        parseInt(num); // trasforma una stringa/float in un intero
+        parseFloat(num); // traforma un intero/stringa in float
+
+        console.log("ciao"*num);  // questa dicitura restituisce 'Nan' --> 'not a number'
+
+        isNaN("ciao"); // funzione globale che verifica che una variabile non sia un numero
+
+        let x=null; // carattere nullo
+        let q;      // carattere indefinito
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

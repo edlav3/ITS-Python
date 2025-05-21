@@ -70,7 +70,6 @@ class Building:
 
 
 
-
 # Creazione di stanze
 room1 = Room(id="Room1", floor=1, seats=15)
 room2 = Room(id="Room2", floor=5, seats=20)
