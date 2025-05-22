@@ -14,7 +14,9 @@ class CodiceFiscale:
         if controllo==False:
             raise ValueError("Codice fiscale non corretto")
         self.codice=codice
-
+    
+    def __str__(self):
+        return self.codice
 
 
 class Città:
@@ -63,7 +65,7 @@ class Voto(int):
 
 
 class Studente:
-    def __init__(self, matricolaS: str, nome: str, genere:Genere, indirizzo: Indirizzo, codicefiscale:CodiceFiscale):
+    def __init__(self, matricolaS: str, nome: str, genere:Genere, indirizzo: Indirizzo, codicefiscale:str):
         self.matricolaS=matricolaS
         self.nome=nome
         self.genere=genere
@@ -102,8 +104,8 @@ class PositiveInt(int): # la classe eredita dal tipo 'int'
 
 indirizzo1=Indirizzo("Via Mattia Battistini", "52")
 indirizzo2=Indirizzo("Via del Forte Boccea", "115")
-st=Studente("12234", "pippo", "uomo", indirizzo1, "VLNDRD03S28H501I")
-st1=Studente("2234", "pina", "donna", indirizzo2, "VLNDRD03S28H501I")
+st=Studente("12234", "pippo", "uomo", indirizzo1, CodiceFiscale("VLNDRD03S28H501I"))
+st1=Studente("2234", "pina", "donna", indirizzo2, CodiceFiscale("VLNDRD03S28H501I"))
 
 if hash(st)==hash(st1):
     raise ValueError("Due studenti non possono avere stesso numero di matricola")
