@@ -14,9 +14,7 @@ class CodiceFiscale:
         if controllo==False:
             raise ValueError("Codice fiscale non corretto")
         self.codice=codice
-    
-    def __str__(self):
-        return self.codice
+
 
 
 class Città:
@@ -38,7 +36,7 @@ class Nazione:
     def __hash__(self) -> int:
         return hash(self.nomeN)
     
-h
+
 class Indirizzo:
     _via:str
     _civico:str
@@ -93,6 +91,14 @@ class Professore:
     def __hash__(self) -> int:
         return hash(self.matricolaP)
 
+
+class PositiveInt(int): # la classe eredita dal tipo 'int'
+    # tipo di dato intero > 0
+    def __new__(cls, valore: int|float|str|bool|Self) -> Self:
+        n:int = super().__new__(cls, valore)  # trasforma l'oggetto n in un oggetto int, super si riferisce alla superclasse di PositiveInt (ovvero int)
+        if n>0:
+            return n
+        raise ValueError(f"Numero inseirto non positivo")
 
 indirizzo1=Indirizzo("Via Mattia Battistini", "52")
 indirizzo2=Indirizzo("Via del Forte Boccea", "115")
