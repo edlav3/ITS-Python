@@ -15,8 +15,9 @@ class CodiceFiscale:
             raise ValueError("Codice fiscale non corretto")
         self.codice=codice
     
-    def __str__(self):
-        return self.codice
+    def __hash__(self) -> int:
+        return hash(self.codice)
+
 
 
 class Città:
@@ -25,11 +26,21 @@ class Città:
     def __hash__(self) -> int:
         return hash(self.nomeC)
     
+    def __eq__(self, other: Self) -> Self:
+        if hash(self)!=hash(other):
+            return False
+        return self.nomeC == other.nomeC
+
+
 class Regione: 
     def __init__(self, nomeR):
         self.nomeR=nomeR
     def __hash__(self) -> int:
         return hash(self.nomeR)
+    def __eq__(self, other: Self) -> Self:
+        if hash(self)!=hash(other):
+            return False
+        return self.nomeR == other.nomeR
 
 
 class Nazione: 
@@ -37,6 +48,10 @@ class Nazione:
         self.nomeN=nomeN
     def __hash__(self) -> int:
         return hash(self.nomeN)
+    def __eq__(self, other: Self) -> Self:
+        if hash(self)!=hash(other):
+            return False
+        return self.nomeN == other.nomeN
     
 
 class Indirizzo:
