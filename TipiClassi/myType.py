@@ -19,12 +19,64 @@ class CodiceFiscale:
         return hash(self.codice)
 
 
+class Valuta(str):
+    def __new__(self, valuta: str|Self) -> Self:
+        controllo=bool(re.fullmatch(r"^[A-Z]{3}", valuta))
+        if controllo==False:
+            raise ValueError("Valuta fiscale non corretto")
+        self.valuta=valuta
+
+
+class Denaro:
+    # tipo composto dai seguenti campi:
+    # - importo: Reale (float)
+    # - valuta: Valuta
+
+    _importo: float
+    _valuta: Valuta
+
+    def __init__(self, importo: float, valuta: Valuta) -> None:
+        self.importo=importo
+        self.valuta=valuta
+
+    def importo(self) -> float:
+        return self._importo
+
+    def valuta(self)->Valuta:
+        return self._valuta
+    
+    def __hash__(self):
+        return hash((self.importo(), self.valuta()))
+    
+    def __eq__(self, other: Self) -> bool:
+        if hash(self) != hash(other):
+            return False
+        return self.valuta()==other.valuta() and self.importo()==other.importo()
+    
+    def __add__(self, other: Self) -> Self:
+        if self.valuta()!=other.valuta():
+            raise ValueError("Le valute sono idverse")
+        somma: float=self.importo() + other.importo()
+        return Denaro(somma, self.valuta()) # resituisce una nuova istanza di Denaro
+    
+    def __repr__(self) -> str:
+        match self.valuta():
+            case 'EUR':
+                val="€"
+            case 'USD':
+                val="$"
+            case 'GBP':
+                val="£"
+            case _:
+                val=self.valuta()
+        return f"{self.importo()} {val}"
+
 
 class Città:
     def __init__(self, nomeC):
         self.nomeC=nomeC
     def __hash__(self) -> int:
-        return hash(self.nomeC)
+        return hash((self.nomeC))
     
     def __eq__(self, other: Self) -> Self:
         if hash(self)!=hash(other):
@@ -36,7 +88,7 @@ class Regione:
     def __init__(self, nomeR):
         self.nomeR=nomeR
     def __hash__(self) -> int:
-        return hash(self.nomeR)
+        return hash((self.nomeR))
     def __eq__(self, other: Self) -> Self:
         if hash(self)!=hash(other):
             return False
@@ -47,7 +99,7 @@ class Nazione:
     def __init__(self, nomeN):
         self.nomeN=nomeN
     def __hash__(self) -> int:
-        return hash(self.nomeN)
+        return hash((self.nomeN))
     def __eq__(self, other: Self) -> Self:
         if hash(self)!=hash(other):
             return False
