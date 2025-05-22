@@ -38,7 +38,7 @@ class Nazione:
     def __hash__(self) -> int:
         return hash(self.nomeN)
     
-
+h
 class Indirizzo:
     _via:str
     _civico:str
@@ -76,7 +76,7 @@ class Studente:
         return hash(self.matricolaS)
     
 
-class Posizione:
+class Posizione(StrEnum):
     ricercatore=auto()
     profAssociato=auto()
     profOrdinario=auto()
