@@ -106,22 +106,33 @@ class Nazione:
         return self.nomeN == other.nomeN
     
 
+class CAP(str):
+    def __new__(cls, cap:str|Self) -> Self:
+        if re.fullmatch(r'\d{5}$'):
+            return super().__new__(cls, cap)
+        raise ValueError("Civico non valido")
+
 class Indirizzo:
     _via:str
     _civico:str
-    def __init__(self, via:str, civ:str):
+    _cap: CAP
+    def __init__(self, via:str, civ:str, cap: CAP):
         if not via or via.isdigit()==True:
             raise TypeError("La via non può essere vuota e non può contenere solo numeri")
         elif len(civ)>6:
             raise ValueError("Civico inesistente")
         self._via=via
         self._civico=civ
+        self._cap=cap
     
     def via(self) -> str:
         return self._via
     
     def civico(self) -> str:
         return self._civico
+    
+    def cap(self) -> str:
+        return self._cap
 
 
 class Voto(int):
