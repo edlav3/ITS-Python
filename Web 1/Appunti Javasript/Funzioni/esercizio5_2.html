@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="s"></div>
+    <script>
+        function compreso(num){
+            let esito;
+            if (num>=1 && num<=7){
+                esito=true
+            } else {
+                document.write("Non posso indovinare il giorno")
+                esito=false
+            }
+            return esito
+        }
+
+        let numero=parseInt(prompt("Inserisci un numero"))
+        let risultato=compreso(numero)
+        function verifica(booleano){
+            if (booleano===true){
+                switch (numero){
+                    case 1:
+                        document.getElementById("s").innerHTML="Lunedi"
+                        break
+                    case 2:
+                        document.getElementById("s").innerHTML="Martedi"
+                        break
+                    case 3:
+                        document.getElementById("s").innerHTML="Mercoledi"
+                        break
+                    case 4:
+                        document.getElementById("s").innerHTML="Giovedi"
+                        break
+                    case 5:
+                        document.getElementById("s").innerHTML="Venerdi"
+                        break
+                    case 6:
+                        document.getElementById("s").innerHTML="Sabato"
+                        break
+                    case 7:
+                        document.getElementById("s").innerHTML="Domenica"
+                        break
+                }
+            }
+        }
+        let output=verifica(risultato)
+    </script>
+</body>
+</html>
