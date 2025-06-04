@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="primo"></div>
+    <div id="secondo"></div>
+    <script>
+        let a=prompt("Inserisci un numero")
+        let b=prompt("Inserisci un altro numero")
+        let c=prompt("Inserisci ancora un numero")
+        let d=prompt("Ancora")
+        let e=prompt("Ultima volta")
+
+        let n1=parseInt(a)
+        let n2=parseInt(b)
+        let n3=parseInt(c)
+        let n4=parseInt(d)
+        let n5=parseInt(e)
+        let somma=n1+n2+n3+n4+n5
+
+        document.getElementById("primo").innerText="Il risultato della somma tra "+n1+", "+n2+", "+n3+", "+n4+", "+n5+" è: " + somma
+        document.getElementById("secondo").innerText="La media dei numeri è "+(somma/5)
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="risultato"></div>
+    <script>
+        let i=parseInt(prompt("Inserisci un numero"))
+        let x=1
+        while (x<=i){
+            document.getElementById("risultato").innerHTML += i+" x "+x+" = "+(i*x)+"<br>";
+            x++
+        }
+    </script>
+</body>
+</html>

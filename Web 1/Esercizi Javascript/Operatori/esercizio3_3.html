@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="primo"></div>
+    <script>
+        let secondiTotali=prompt("Secondi")
+        let ore=Math.floor(secondiTotali/3600)
+        let minuti=Math.floor((secondiTotali/3600)/60)
+        let secondi=secondiTotali%60
+
+        document.getElementById("primo").innerText=ore+" ore, "+minuti+" minuti, "+secondi+" secondi"
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="risultato"></div>
+    <script>
+        let numeri=[3, 4, 9, 12, 140, 18, 21, 30, 100, 48]
+        let pari=0
+        let dispari=0
+        for (let i in numeri){
+            if (numeri[i]%2==0){
+                pari++
+            } else {
+                dispari++
+            }
+        }
+        document.getElementById("risultato").innerHTML= "Tra "+numeri.join(", ")+" ci sono "+pari+" numeri pari e "+dispari+" numeri dispari";
+    </script>
+</body>
+</html>

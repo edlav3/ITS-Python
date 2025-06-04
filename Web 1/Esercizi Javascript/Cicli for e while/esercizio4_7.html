@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="risultato"></div>
+    <script>
+        let numeri=[3, 400, 9, 12, 1200, 18, 21]
+        let maggiore=-99999
+        for (let i in numeri){
+            if (numeri[i]>maggiore){
+                maggiore=numeri[i]
+            }
+        }
+        document.getElementById("risultato").innerHTML= "Tra "+numeri.join(", ")+" il maggiore è: "+maggiore;
+    </script>
+</body>
+</html>
