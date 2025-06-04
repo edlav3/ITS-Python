@@ -9,12 +9,9 @@
     <div id="s"></div>
     <script>
         function compreso(num){
-            let esito;
+            let esito=false;
             if (num>=1 && num<=7){
                 esito=true
-            } else {
-                document.write("Non posso indovinare il giorno")
-                esito=false
             }
             return esito
         }
@@ -46,6 +43,9 @@
                         document.getElementById("s").innerHTML="Domenica"
                         break
                 }
+            }
+            else {
+                document.getElementById("s").innerHTML="Il numero deve essere compreso tra 1 e 7"
             }
         }
         let output=verifica(risultato)

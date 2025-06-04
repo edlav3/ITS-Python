@@ -73,6 +73,7 @@ class Denaro:
 
 
 class Città:
+    _nome: str
     def __init__(self, nomeC):
         self.nomeC=nomeC
     def __hash__(self) -> int:

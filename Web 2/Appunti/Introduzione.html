@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Gestione processi asincroni:
+     Un processo
+    
+    -->
+
+    <script>
+        let a=() => {
+            console.log("Sono A")
+            // funzione asincrona
+            setTimeout() // funzione del browser (non di javascript) che viene eseguita in maniera asincrona, ovvero alla fine del nostro codice html
+        }
+        let b=() => {
+            console.log("Sono B")
+        }
+        let c=() => {
+            console.log("Sono C")
+        }
+
+        let calcolo=() =>{
+            a();
+            b();
+            c();
+        } // la sequenza con cui verranno stampate le funzioni sarà sequenziale, sincrona
+        </script>
+</body>
+</html>
