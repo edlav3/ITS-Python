@@ -18,10 +18,6 @@ def caesar_cypher_encrypt(s:str, key:int) -> str:
         i+=1
     return lista
 
-prova="ciao a tutti"
-ancoraprova=caesar_cypher_encrypt(prova, 30)
-print(ancoraprova)
-
 
 def caesar_cypher_decrypt(s:str, key:int):
     lista=""
@@ -37,7 +33,10 @@ def caesar_cypher_decrypt(s:str, key:int):
         else:
             lista+=" "
         i+=1
-    
+
     return lista
 
-print(caesar_cypher_decrypt(ancoraprova, 30))
+prova="hello world!Aa"
+ancoraprova=caesar_cypher_encrypt(prova, 13)
+print(ancoraprova)
+print(caesar_cypher_decrypt(ancoraprova, 13))
