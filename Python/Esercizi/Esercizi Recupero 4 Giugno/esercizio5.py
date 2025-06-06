@@ -8,5 +8,5 @@ def funzione(lista:list[int], threshold:int) -> list[int]:
             totale*=num
     return totale
 
-lista=[1, 4, 56, 7, 5, 3]
+lista=[1, 4, 56, 7, 5, 3, 6, 11]
 print(funzione(lista, 9))
