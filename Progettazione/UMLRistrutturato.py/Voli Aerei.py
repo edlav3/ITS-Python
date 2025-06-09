@@ -17,7 +17,7 @@ class Volo:
 
 
     def __init__(self, codice, durata:PositiveNuetralInt):
-        self.set_codice(codice)
+        self._codice=codice
         self.set_durata(durata)
    
     def codice(self) -> str:
@@ -46,30 +46,6 @@ class GreaterThan1900(int):
 
 
 
-
-class Compagnia:
-    _nome:str   #noto alla nascita
-    _anno:GreaterThan1900   #<<immutabile>> e noto alla nascita
-
-
-    def __init__(self, nome:str, anno: GreaterThan1900):
-        self.set_nome(nome)
-        self.set_anno(anno)
-   
-    def nome(self) -> str:
-        return self._nome
-   
-    def anno(self) -> int:
-        return self._anno
-   
-    def set_nome(self, c:str) -> None:
-        self._nome:str=c
-   
-    def set_anno(self, a:GreaterThan1900) -> None:
-        self._anno=a
-
-
-
 class Aeroporto:
     _nome:str   #noto alla nascita
     _codice:str     #noto alla nascita
@@ -89,7 +65,6 @@ class Città:
         self.nomeC=nomeC
         self.abitanti=abitanti
 
-
     def __hash__(self) -> int:
         return hash((self.nomeC))
    
@@ -97,6 +72,37 @@ class Città:
         if hash(self)!=hash(other):
             return False
         return self.nomeC == other.nomeC
+
+
+
+class Compagnia:
+    _nome:str   #noto alla nascita
+    _anno:GreaterThan1900   #<<immutabile>> e noto alla nascita
+    _dir_comp_citt:Città # noto alla nascita, mutabile, da aggegazione
+
+
+    def __init__(self, nome:str, anno: GreaterThan1900, citta: Città):
+        self.set_nome(nome)
+        self._anno=anno
+        self.set_citta(citta)
+
+    def nome(self) -> str:
+        return self._nome
+   
+    def anno(self) -> int:
+        return self._anno
+    
+    def citta(self):
+        return self._dir_comp_citt
+    
+    def set_citta(self, citta: Città):
+        self._dir_comp_citt=citta
+   
+    def set_nome(self, c:str) -> None:
+        self._nome:str=c
+   
+    def set_anno(self, a:GreaterThan1900) -> None:
+        self._anno=a
 
 
 
