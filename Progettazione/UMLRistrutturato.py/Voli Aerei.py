@@ -15,7 +15,6 @@ class Volo:
     _codice:str     #<<immutabile>> e noto alla nascita
     _durata: PositiveNuetralInt     #noto alla nascita
 
-
     def __init__(self, codice, durata:PositiveNuetralInt):
         self._codice=codice
         self.set_durata(durata)
@@ -56,7 +55,7 @@ class Aeroporto:
         if controllo==False:
             raise ValueError("Codice non corretto")
         self._codice=codice
-        self._nome=nome
+        self.set_nome(nome)
 
     def nome(self) -> str:
         return self._nome
