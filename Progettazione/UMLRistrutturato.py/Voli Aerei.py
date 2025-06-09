@@ -48,15 +48,24 @@ class GreaterThan1900(int):
 
 class Aeroporto:
     _nome:str   #noto alla nascita
-    _codice:str     #noto alla nascita
+    _codice:str     # <<immutabile>>, noto alla nascita
 
 
     def __init__(self, nome:str, codice:str):
         controllo=bool(re.fullmatch(r"^[A-Z]{3}$", codice))
         if controllo==False:
             raise ValueError("Codice non corretto")
-        self.codice=codice
+        self._codice=codice
         self._nome=nome
+
+    def nome(self) -> str:
+        return self._nome
+    
+    def set_nome(self, codice) -> str:
+        self._codice=codice
+    
+    def codice(self) -> str:
+        return self._codice
 
 
 
@@ -100,9 +109,7 @@ class Compagnia:
    
     def set_nome(self, c:str) -> None:
         self._nome:str=c
-   
-    def set_anno(self, a:GreaterThan1900) -> None:
-        self._anno=a
+
 
 
 
