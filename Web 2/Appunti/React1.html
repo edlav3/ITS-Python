@@ -12,11 +12,22 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     -->
 
+    <div id="root"></div>
     <script src="https://unpkg.com/react@18/umd/react.development.js">
-
     </script> 
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js">
-
+    </script>
+    <script>
+        const elementRoot=document.querySelector('#root');
+         const root=ReactDOM.createRoot(rootElement)
+         const h1=ReactDOM.createElement("h1", {
+            style:{
+                color:"green",
+                width:"200px",
+            },
+            className:"big",
+            onclick: ele => {console.log(ele.target)}
+         }, "Ciao sono un h1")
     </script>
 </body>
 </html>
