@@ -67,26 +67,64 @@ class Aeroporto:
         return self._codice
 
 
+class Nazione:
 
-class Città:
-    def __init__(self, nomeC, abitanti: PositiveNuetralInt):
-        self.nomeC=nomeC
-        self.abitanti=abitanti
+    def __init__(self, nomeN):
+        self.nomeN=nomeN
 
     def __hash__(self) -> int:
-        return hash((self.nomeC))
+        return hash((self.nomeN))
    
     def __eq__(self, other: Self) -> bool:
         if hash(self)!=hash(other):
             return False
-        return self.nomeC == other.nomeC
+        return self.nomeN == other.nomeN
+
+class Città:
+    _nome=str
+    _abitanti: PositiveNuetralInt
+    _nazione:Nazione
+
+    def __init__(self, nome, abitanti: PositiveNuetralInt):
+        self.set_nome(nome)
+        self.set_abitanti(abitanti)
+
+    def nome(self) -> str:
+        return self._nome
+    
+    def set_nome(self, nome) -> None:
+        self._nome=nome
+
+    def abitanti(self) -> PositiveNuetralInt:
+        return self._abitanti
+    
+    def set_abitanti(self, abitanti: PositiveNuetralInt) -> None:
+        self._abitanti=abitanti
+    
+    def nazione(self) -> Nazione:
+        return self._nazione
+    
+    def set_nazione(self, nazione:Nazione) -> None:
+        try:
+            self._nazione.remove_citta(self) # da imprementare metodo
+        except AttributeError:
+            pass
+        nazione.add_citta(self) # da imprementare metodo
+
+    def __hash__(self) -> int:
+        return hash((self._nome))
+   
+    def __eq__(self, other: Self) -> bool:
+        if hash(self)!=hash(other):
+            return False
+        return self._nome == other._nome
 
 
 
 class Compagnia:
     _nome:str   #noto alla nascita
     _anno:GreaterThan1900   #<<immutabile>> e noto alla nascita
-    _dir_comp_citt:Città # noto alla nascita, mutabile, da aggegazione
+    _dir_comp_citt:Città # noto alla nascita, mutabile, da aggregazione
 
 
     def __init__(self, nome:str, anno: GreaterThan1900, citta: Città):
@@ -108,19 +146,3 @@ class Compagnia:
    
     def set_nome(self, c:str) -> None:
         self._nome:str=c
-
-
-
-
-class Nazione:
-    def __init__(self, nomeN):
-        self.nomeN=nomeN
-
-
-    def __hash__(self) -> int:
-        return hash((self.nomeN))
-   
-    def __eq__(self, other: Self) -> bool:
-        if hash(self)!=hash(other):
-            return False
-        return self.nomeN == other.nomeN
