@@ -52,6 +52,6 @@ def caesar_cypher_decrypt(s:str, key:int):
     return lista
 
 prova="hello world!AA!!Aa"
-ancoraprova=caesar_cypher_encrypt(prova, 13)
+ancoraprova=caesar_cypher_encrypt(prova, 1)
 print(ancoraprova)
-print(caesar_cypher_decrypt(ancoraprova, 13))
+print(caesar_cypher_decrypt(ancoraprova, 1))

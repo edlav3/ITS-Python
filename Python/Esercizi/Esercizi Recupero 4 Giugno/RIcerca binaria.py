@@ -22,5 +22,5 @@ def ricerca(lista:list[int], ricercato:int) -> bool:
             sinistra=circaMeta+1
     return False
 
-lista=(1,4,5,6,2,3,56)
+lista=(3, 89, 5, 57)
 print(ricerca(lista, 57))
