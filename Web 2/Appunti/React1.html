@@ -17,17 +17,27 @@
     </script> 
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js">
     </script>
+    
     <script>
-        const elementRoot=document.querySelector('#root');
+        const rootElement=document.querySelector('#root');
          const root=ReactDOM.createRoot(rootElement)
-         const h1=ReactDOM.createElement("h1", {
+         const elemento=React.createElement
+         const h1=React.createElement("h1", {key:"h1",  // react accetta 3 attributi {tag, oggetto, contenuto del tag}
             style:{
-                color:"green",
+                color:"green", 
                 width:"200px",
             },
             className:"big",
-            onclick: ele => {console.log(ele.target)}
-         }, "Ciao sono un h1")
+            onclick: elemento => {console.log(elemento.target)}  //ogni volta che abbiamo una funzione che fa accadere un evento, 
+         }, "Lista della spesa")
+
+         const ul=elemento("ul",{key:"ul"},[
+            elemento("li", {key:"prodotto1"}, "Pane"),
+            elemento("li", {key:"prodotto2"}, "Nutella"),
+            elemento("li", {key:"prodotto3"}, "Biscotti")
+            ])
+         const main=elemento("main",{},(h1, ul))
+         root.render(main)
     </script>
 </body>
 </html>
