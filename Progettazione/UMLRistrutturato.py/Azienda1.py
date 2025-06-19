@@ -53,47 +53,6 @@ class PositiveFloat(float): # la classe eredita dal tipo 'float'
         raise ValueError(f"Numero inseirto non positivo")
 
 
-class Impiegato:
-    _nome: str #noto alla nascita
-    _cognome: str #noto alla nascita
-    _nascita:date #<<immutabile>> e noto alla nascita
-    _stipendio: PositiveInt
-
-
-    def __init__(self, nome:str, cognome:str, nascita: date, stipendio: PositiveInt):
-        self.set_nome(nome)
-        self.set_cognome(cognome)
-        self.set_nascita(nascita)
-        self.set_stipendio(stipendio)
-
-    def nome(self) -> str:
-        return self._nome
-    
-    def cognome(self) -> str:
-        return self._cognome
-    
-    def nascita(self) -> str:
-        return self._nascita
-    
-    def stipendio(self) -> float:
-        return self._stipendio
-    
-    def set_nome(self, n:str) -> None:
-        self._nome:str=n
-    
-    def set_cognome(self, c:str) -> None:
-        self._cognome:str=c
-
-    def set_stipendio(self, s:str) -> None:
-        self._stipendio:str=s
-
-    def set_nascita(self, nascita: date) -> None:
-        self._nascita=nascita
-    
-    def __str__(self) -> str:
-        return f"{self._nome} {self._cognome} - Nascita: {self._nascita}, Stipendio: {self._stipendio}€"
-
-
 class Telefono: 
     def __init__(self):
         pass # da aggiungere
@@ -138,32 +97,70 @@ class Dipartimento:
             self._telefoni.remove(telefono)
         else:
             raise RuntimeError("Il dipartimento deve avere un numero di telefono")
+
     
 
-class Coinvolto:
-    _assunzione: date
-    def __init__(self, assunzione: date):
-        self.set_assunzione(assunzione)
+class Afferenza:
+    _data_aff:date #<<immutabile>>
+    def __init__(self, data_aff:date):
+        self._data_aff=data_aff
 
-    def set_assunzione(self, assunzione):
-        self._assunzione=assunzione
 
-    def assunzione(self):
-        return self._assunzione
-    
+
+class Impiegato:
+    _nome: str #noto alla nascita
+    _cognome: str #noto alla nascita
+    _nascita:date #<<immutabile>> e noto alla nascita
+    _stipendio: PositiveInt
+    _progetti: dict['Progetto', 'Coinvolto']
+
+    def __init__(self, nome:str, cognome:str, nascita: date, stipendio: PositiveInt):
+        self.set_nome(nome)
+        self.set_cognome(cognome)
+        self.set_nascita(nascita)
+        self.set_stipendio(stipendio)
+        self._progetti={}
+
+    def nome(self) -> str:
+        return self._nome
+
+    def cognome(self) -> str:
+        return self._cognome
+
+    def nascita(self) -> str:
+        return self._nascita
+
+    def stipendio(self) -> float:
+        return self._stipendio
+
+    def set_nome(self, n:str) -> None:
+        self._nome:str=n
+
+    def set_cognome(self, c:str) -> None:
+        self._cognome:str=c
+
+    def set_stipendio(self, s:str) -> None:
+        self._stipendio:str=s
+
+    def set_nascita(self, nascita: date) -> None:
+        self._nascita=nascita
+
     def __str__(self) -> str:
-        return f"Assunzione: {self._assunzione}"
+        return f"{self._nome} {self._cognome} - Nascita: {self._nascita}, Stipendio: {self._stipendio}€"
+
+    def add_link_coinvolto(self):
+        pass
 
 
 class Progetto:
     _nome:str
     _budget:PositiveFloat
-    _impiegati:dict[Impiegato:Coinvolto]
+    _impiegati:dict[Impiegato, 'Coinvolto']
 
     def __init__(self, nome:str, budget:PositiveFloat):
         self.set_nome(nome)
         self.set_budget(budget)
-        self.impiegati={}
+        self._impiegati={}
 
     def set_nome(self, nome:str):
         self._nome=nome
@@ -177,24 +174,52 @@ class Progetto:
     def budget(self):
         return self._budget
 
-    def add_impiegato(self, impiegato: Impiegato, data:date):
-        coinvolto=Coinvolto(data)
-        self.impiegati[impiegato]=coinvolto
+    def add_link_coinvolto(self):
+        pass
 
     def is_coinvolto(self, impiegato: Impiegato) -> bool:
-        return impiegato in self.impiegati
+        return impiegato in self._impiegati
 
     def ultimo_impegato(self) -> Impiegato:
-        ultima_assunzione=max(self.impiegati.values())
+        ultima_assunzione=max(self._impiegati.values())
         assunti={}
-        for impiegato, data in self.impiegati.values():
+        for impiegato, data in self._impiegati.values():
             assunti[data]=impiegato
         return assunti[ultima_assunzione]
     
     def __str__(self) -> str:
-        impiegati_str = "\n".join([f"{impiegato} - {coinvolto}" for impiegato, coinvolto in self.impiegati.items()])
-        return f"Progetto: {self._nome}, Budget: {self._budget}€\n\nImpiegati:\n{impiegati_str}"
+        _impiegati_str = "\n".join([f"{impiegato} - {coinvolto}" for impiegato, coinvolto in self._impiegati.items()])
+        return f"Progetto: {self._nome}, Budget: {self._budget}€\n\nImpiegati:\n{_impiegati_str}"
     
+
+class Coinvolto:
+    # questa è una class efactory: non ha oggetti suoi
+    # serve solo a creare oggetti di un'altra classe (in questo caso, di classe Link)
+    @classmethod
+    def add(cls, impiegato: Impiegato, progetto: Progetto) -> None:
+        # crea il link (impiegato, progetto)
+        impiegato.add_link_coinvolto(progetto)
+        progetto.add_link_coinvolto(impiegato)
+
+    class _link:
+        # ogni oggetto di questa class rappresenta un link di associazione Coinvolto
+        # ovvero una coppi (Impiegato, Progetto)
+        _impiegato: Impiegato
+        _progetto: Progetto
+        def __init__(self, impiegato: Impiegato, progetto: Progetto):
+            self._impiegato=impiegato
+            self._progetto=progetto
+
+        def impiegato(self):
+            return self._impiegato
+
+        def progetto(self):
+            return self._progetto
+        
+        '''dentro Impiegato ci dovrà essere un campo progetti -> ovvero un set di
+        set coinvolto._link del tipo:
+        alice._progetti = {(alice, pegaso), (alice, prometeo), ecc}
+        -> Ogni tupla del set avrà come primo elemento Alice'''
 
 
 progetto = Progetto("Pegaso", 12.5)
