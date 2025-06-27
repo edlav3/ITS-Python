@@ -148,8 +148,9 @@ class Impiegato:
     def __str__(self) -> str:
         return f"{self._nome} {self._cognome} - Nascita: {self._nascita}, Stipendio: {self._stipendio}€"
 
-    def add_link_coinvolto(self):
-        pass
+    def add_link_coinvolto(self, progetto: 'Progetto'):
+        coinvolto=Coinvolto._link(Self, progetto)
+        self._progetti[progetto]=coinvolto
 
 
 class Progetto:
