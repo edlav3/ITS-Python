@@ -6,7 +6,7 @@ class PositiveInt(int):
         n:int = super().__new__(cls, valore) 
         if n>0:
             return n
-        raise ValueError(f"Numero inseirto non positivo")
+        raise ValueError(f"Numero inserito non positivo")
 
 
 class Creatura:
