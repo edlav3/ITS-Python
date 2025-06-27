@@ -11,7 +11,7 @@ def calculateCharges(ore: float) -> int:
         tariffa= 2+(ore-3)*0.50
     elif ore==24:
         tariffa=10
-    else:
+    else: 
         pass
     return tariffa
 
