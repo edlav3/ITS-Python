@@ -180,12 +180,12 @@ class Progetto:
     def is_coinvolto(self, impiegato: Impiegato) -> bool:
         return impiegato in self._impiegati
 
-    def ultimo_impegato(self) -> Impiegato:
+    '''def ultimo_impegato(self) -> Impiegato:
         ultima_assunzione=max(self._impiegati.values())
         assunti={}
         for impiegato, data in self._impiegati.values():
             assunti[data]=impiegato
-        return assunti[ultima_assunzione]
+        return assunti[ultima_assunzione]'''
     
     def __str__(self) -> str:
         _impiegati_str = "\n".join([f"{impiegato} - {coinvolto}" for impiegato, coinvolto in self._impiegati.items()])
@@ -225,9 +225,3 @@ class Coinvolto:
 progetto = Progetto("Pegaso", 12.5)
 imp1 = Impiegato("Mario", "Rossi", date(2023, 12, 12), 1)
 imp2 = Impiegato("Pippo", "Franco", date(2010, 12, 23), 4)
-
-progetto.add_impiegato(imp1, date(2022, 12, 12))
-progetto.add_impiegato(imp2, date(2020, 5, 6))
-print(progetto)
-
-ultimo_impiegato = progetto.ultimo_impegato()
