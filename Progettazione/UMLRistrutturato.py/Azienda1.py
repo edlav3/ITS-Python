@@ -169,6 +169,8 @@ class Impiegato:
             raise ValueError("Link già presente")
 
     def remove_link(self, l: 'Coinvolto._link'):
+        if l.impiegato() is not self:
+            raise ValueError("Fermo!")
         if l.progetto() in self._progetti:
             self._progetti.pop(l.progetto())
         else:
@@ -185,16 +187,16 @@ class Progetto:
         self.set_budget(budget)
         self._impiegati={}
 
-    def set_nome(self, nome:str):
+    def set_nome(self, nome:str) -> None:
         self._nome=nome
     
-    def set_budget(self, budget:str):
+    def set_budget(self, budget:str) -> None:
         self._budget=budget
 
-    def nome(self):
+    def nome(self) -> str:
         return self._nome
 
-    def budget(self):
+    def budget(self) -> PositiveFloat:
         return self._budget
 
     def add_link_coinvolto(self, l: 'Coinvolto._link'):
@@ -204,6 +206,8 @@ class Progetto:
             raise ValueError("Link già presente")
 
     def remove_link(self, l: 'Coinvolto._link'):
+        if l.progetto() is not self:
+            raise ValueError("Fermo!")
         if l.impiegato() in self._impiegati:
             self._impiegati.pop(l.impiegato())
         else:
@@ -226,6 +230,8 @@ class Coinvolto:
         l = cls._link(impiegato, progetto)
         impiegato.add_link_coinvolto(l)
         progetto.add_link_coinvolto(l)
+        impiegato.remove_link(l)
+        progetto.remove_link(l)
     
     class _link:
         # ogni oggetto di questa class rappresenta un link di associazione Coinvolto
