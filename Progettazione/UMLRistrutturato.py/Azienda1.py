@@ -42,7 +42,7 @@ class PositiveInt(int): # la classe eredita dal tipo 'int'
         n:int = super().__new__(cls, valore)  # trasforma l'oggetto n in un oggetto int, super si riferisce alla superclasse di PositiveInt (ovvero int)
         if n>0:
             return n
-        raise ValueError(f"Numero inseirto non positivo")
+        raise ValueError(f"Numero inserito non positivo")
 
 class PositiveFloat(float): # la classe eredita dal tipo 'float'
     # tipo di dato float > 0
@@ -53,9 +53,23 @@ class PositiveFloat(float): # la classe eredita dal tipo 'float'
         raise ValueError(f"Numero inseirto non positivo")
 
 
-class Telefono: 
-    def __init__(self):
-        pass # da aggiungere
+class Telefono:
+    def __init__(self, numero: str):
+        if not re.fullmatch(r'\d{10}', numero):
+            raise ValueError("Numero di telefono non valido")
+        self._numero = numero
+
+    def numero(self) -> str:
+        return self._numero
+
+    def __str__(self):
+        return self._numero
+
+    def __eq__(self, other):
+        return isinstance(other, Telefono) and self._numero == other._numero
+
+    def __hash__(self):
+        return hash(self._numero)
 
 
 class Dipartimento: 
@@ -139,8 +153,8 @@ class Impiegato:
     def set_cognome(self, c:str) -> None:
         self._cognome:str=c
 
-    def set_stipendio(self, s:str) -> None:
-        self._stipendio:str=s
+    def set_stipendio(self, s:PositiveInt) -> None:
+        self._stipendio:PositiveInt=s
 
     def set_nascita(self, nascita: date) -> None:
         self._nascita=nascita
@@ -148,9 +162,17 @@ class Impiegato:
     def __str__(self) -> str:
         return f"{self._nome} {self._cognome} - Nascita: {self._nascita}, Stipendio: {self._stipendio}€"
 
-    def add_link_coinvolto(self, progetto: 'Progetto'):
-        coinvolto=Coinvolto._link(Self, progetto)
-        self._progetti[progetto]=coinvolto
+    def add_link_coinvolto(self, l:'Coinvolto._link'):
+        if l._progetto not in self._progetti:
+            self._progetti[l.progetto()]=l
+        else:
+            raise ValueError("Link già presente")
+
+    def remove_link(self, l: 'Coinvolto._link'):
+        if l.progetto() in self._progetti:
+            self._progetti.pop(l.progetto())
+        else:
+            raise ValueError("Il link non esiste")
 
 
 class Progetto:
@@ -171,22 +193,24 @@ class Progetto:
 
     def nome(self):
         return self._nome
-    
+
     def budget(self):
         return self._budget
 
-    def add_link_coinvolto(self):
-        pass
+    def add_link_coinvolto(self, l: 'Coinvolto._link'):
+        if l._impiegato not in self._impiegati:
+            self._impiegati[l.impiegato()]=l
+        else:
+            raise ValueError("Link già presente")
+
+    def remove_link(self, l: 'Coinvolto._link'):
+        if l.impiegato() in self._impiegati:
+            self._impiegati.pop(l.impiegato())
+        else:
+            raise ValueError("Il link non esiste")
 
     def is_coinvolto(self, impiegato: Impiegato) -> bool:
         return impiegato in self._impiegati
-
-    '''def ultimo_impegato(self) -> Impiegato:
-        ultima_assunzione=max(self._impiegati.values())
-        assunti={}
-        for impiegato, data in self._impiegati.values():
-            assunti[data]=impiegato
-        return assunti[ultima_assunzione]'''
     
     def __str__(self) -> str:
         _impiegati_str = "\n".join([f"{impiegato} - {coinvolto}" for impiegato, coinvolto in self._impiegati.items()])
@@ -194,14 +218,15 @@ class Progetto:
     
 
 class Coinvolto:
-    # questa è una class efactory: non ha oggetti suoi
+    # questa è una classe factory: non ha oggetti suoi
     # serve solo a creare oggetti di un'altra classe (in questo caso, di classe Link)
     @classmethod
     def add(cls, impiegato: Impiegato, progetto: Progetto) -> None:
         # crea il link (impiegato, progetto)
-        impiegato.add_link_coinvolto(progetto)
-        progetto.add_link_coinvolto(impiegato)
-
+        l = cls._link(impiegato, progetto)
+        impiegato.add_link_coinvolto(l)
+        progetto.add_link_coinvolto(l)
+    
     class _link:
         # ogni oggetto di questa class rappresenta un link di associazione Coinvolto
         # ovvero una coppi (Impiegato, Progetto)
@@ -216,13 +241,8 @@ class Coinvolto:
 
         def progetto(self):
             return self._progetto
-        
-        '''dentro Impiegato ci dovrà essere un campo progetti -> ovvero un set di
-        set coinvolto._link del tipo:
-        alice._progetti = {(alice, pegaso), (alice, prometeo), ecc}
-        -> Ogni tupla del set avrà come primo elemento Alice'''
 
 
-progetto = Progetto("Pegaso", 12.5)
+progetto = Progetto("Pegaso", PositiveInt(12.5))
 imp1 = Impiegato("Mario", "Rossi", date(2023, 12, 12), 1)
 imp2 = Impiegato("Pippo", "Franco", date(2010, 12, 23), 4)
