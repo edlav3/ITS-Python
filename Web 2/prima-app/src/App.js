@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import './App.css';
+import { anagrafica } from './data/dati';
 import Clock from './Clock';
 import Componente1 from './Componente1';
 import Stampanumeri from './Esercizi/StampaNumeri';
@@ -9,9 +11,62 @@ import Stampanumerimoltiplicati from './Esercizi/Tabellina';
       }*/
 
 
-function App() {
 
-  let nome="Edoardo";
+function App() {
+  let name = "Pippo"
+
+  const [name1, setName1] = useState(name);
+
+  const cambiaNome = () => {
+    console.log(name);
+    name = "Mario"
+    setName1(name)
+    console.log(name);
+  };
+  const elimina = (id) => {
+    const newAnag = persone.filter(p => p.id !== id);
+    setPersone(newAnag);
+  };
+
+  const [persone, setPersone] = useState({
+    id:"1",
+    nome:"Martino",
+    cognome:"Valdinoci",
+    età:50
+  });
+
+  const compleanno=()=>{
+    let anni=persone.età+1;
+
+    setPersone({
+      ...persone,
+      età:anni
+    })
+  }
+  return (
+    <>
+      <div className="App">
+        <h1>{name1}</h1>
+        <button onClick={cambiaNome} className="btn btn-primary">
+          Cambia Nome
+        </button>
+        {
+          persone.map((p) => {
+            return (<div><span>{p.name} {p.cognome}</span>
+            <button onClick={() => {
+              elimina(p.id);
+            }}>
+              elimina</button></div>)
+          })
+        }
+        <button onClick={compleanno} className='btn btn-primary'>
+          compleanno
+        </button>
+      </div>
+    </>
+  )
+
+  /*let nome="Edoardo";
   return (
     <div className="App">
       <Stampanumeri></Stampanumeri>
@@ -30,11 +85,11 @@ function App() {
       Importo il componente clock <Clock timezone="0" country="Italia"></Clock>
       <br></br>
       {/*
-      getDate(new Date())*/
-      }
-      </h2>
-    </div>
-  );
+      getDate(new Date())
+    }
+    </h2>
+  </div>
+);*/
 }
 
-export default App;
+  export default App;
