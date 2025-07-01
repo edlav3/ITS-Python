@@ -18,7 +18,8 @@ class Documento:
 
 class Email(Documento):
     def __init__(self, text:str, mittente: str, destinatario:str, titolo:str):
-        super().__init__(text)
+        super().__init__()
+        self.setText(text)
         self.setMittente(mittente)
         self.setDestinatario(destinatario)
         self.setTitolo(titolo)
@@ -53,8 +54,9 @@ class Email(Documento):
 class File(Documento):
 
     def __init__(self, text, nomePercorso: str):
-        super().__init__(text)
+        super().__init__()
         self.percorso=nomePercorso
+        self.setText(text)
 
     def leggiTestoDaFile(self):
         with open(self.percorso, "r") as file:
@@ -63,3 +65,11 @@ class File(Documento):
     def getText(self):
         return f"Percorso: {self.percorso}\nContenuto: {self.text}"
     
+
+testo="Ciao Mario, è un piacere risentirti"
+mitt="andreafalcone2020@gmail.com"
+dest="mariolazio1972@gmail.com"
+titolo="Caro amico,"
+
+mail=Email(testo, mitt, dest, titolo)
+print(mail.getText())
