@@ -1,48 +1,46 @@
-import { useState } from 'react';
-import './App.css';
-import { anagrafica } from './data/dati';
-import Clock from './Clock';
-import Componente1 from './Componente1';
-import Stampanumeri from './Esercizi/StampaNumeri';
-import Tabellina from './Esercizi/Tabellina';
-import Stampanumerimoltiplicati from './Esercizi/Tabellina';
+import { useState } from "react";
+import "./App.css";
+import CleanUp from "./Esercizi/CleanUp";
+import { anagrafica } from "./data/dati";
+import Clock from "./Clock";
+import Componente1 from "./Componente1";
+import Stampanumeri from "./Esercizi/StampaNumeri";
+import Tabellina from "./Esercizi/Tabellina";
+import Stampanumerimoltiplicati from "./Esercizi/Tabellina";
 /*function getDate(date){
    return date.toLocaleDateString() + " " + new Date().toLocaleTimeString()
       }*/
 
-
-
 function App() {
-  let name = "Pippo"
+  let name = "Pippo";
 
   const [name1, setName1] = useState(name);
-
   const cambiaNome = () => {
     console.log(name);
-    name = "Mario"
-    setName1(name)
+    name = "Mario";
+    setName1(name);
     console.log(name);
   };
   const elimina = (id) => {
-    const newAnag = persone.filter(p => p.id !== id);
+    const newAnag = persone.filter((p) => p.id !== id);
     setPersone(newAnag);
   };
 
   const [persone, setPersone] = useState({
-    id:"1",
-    nome:"Martino",
-    cognome:"Valdinoci",
-    età:50
+    id: "1",
+    nome: "Martino",
+    cognome: "Valdinoci",
+    età: 50,
   });
 
-  const compleanno=()=>{
-    let anni=persone.età+1;
+  const compleanno = () => {
+    let anni = persone.età + 1;
 
     setPersone({
       ...persone,
-      età:anni
-    })
-  }
+      età: anni,
+    });
+  };
   return (
     <>
       <div className="App">
@@ -50,22 +48,12 @@ function App() {
         <button onClick={cambiaNome} className="btn btn-primary">
           Cambia Nome
         </button>
-        {
-          persone.map((p) => {
-            return (<div><span>{p.name} {p.cognome}</span>
-            <button onClick={() => {
-              elimina(p.id);
-            }}>
-              elimina</button></div>)
-          })
-        }
-        <button onClick={compleanno} className='btn btn-primary'>
+        <button onClick={compleanno} className="btn btn-primary">
           compleanno
         </button>
       </div>
     </>
-  )
-
+  );
   /*let nome="Edoardo";
   return (
     <div className="App">
@@ -92,4 +80,4 @@ function App() {
 );*/
 }
 
-  export default App;
+export default App;
