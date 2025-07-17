@@ -57,7 +57,7 @@ class Bid:
     def get_istante(self) -> datetime:
         return self._istante
     
-    def add_link_coinvolto(self, l:'AstaBid._link'):
+    def add_link_AstaBid(self, l:'AstaBid._link'):
         if l._bid not in self._asta_bid:
             self._asta_bid[l._bid()]=l
         else:
@@ -159,6 +159,43 @@ class Asta(PostOggetto):
         else:
             raise ValueError("Il link non esiste")
         
+    
+    # operazione di classe con pseudo codice
+    '''
+    ultimo_bid(i:datetime): Bid|None
+        B={} -> insieme di Bid
+        per ogni l in this.asta_bid:
+            se l.bid.istante <= i:
+                B.add(l.bid)
+        attuale = B(0)
+        per ogni b in B:
+            se b.istante > attuale:
+                attuale = b
+        return attuale
+    '''
+    
+    # operazione di classe implementata
+    def ultimo_bid(self, i: datetime) -> Bid | None:
+        lista=[]
+        for l in self._asta_bid:
+            if l._istante<=i:
+                lista.append(l)
+        attuale=lista[0]
+        for b in lista:
+            if b>attuale._istante:
+                attuale=b
+        return attuale
+        
+    # versione ottimizzata (pseudo codice)
+    '''    
+    ultimo_bid(i: datetime): Bid|None
+        max_b=None
+        per ogni l in this.asta_bid:
+            if l.bid.istante <= i:
+                se l.bid.istante > max_b.istante or max_b = None:
+                    max_b = b
+        return max_b
+    '''
 
 class AstaBid:
     #classe factory
