@@ -81,12 +81,17 @@ where
 --9. Quali sono i voli che partono da un qualunque aeroporto della città di ‘Roma’ e
 --atterrano ad un qualunque aeroporto della città di ‘New York’? Restituire: codice
 --del volo, nome della compagnia, e aeroporti di partenza e arrivo.
-
-
 --10. Quali sono i possibili piani di volo con esattamente un cambio (utilizzando solo
 --voli della stessa compagnia) da un qualunque aeroporto della città di ‘Roma’ ad un
 --qualunque aeroporto della città di ‘New York’? Restituire: nome della compagnia,
 --codici dei voli, e aeroporti di partenza, scalo e arrivo.
-
-
 --11. Quali sono le compagnie che hanno voli che partono dall’aeroporto ‘FCO’, atterrano all’aeroporto ‘JFK’, e di cui si conosce l’anno di fondazione?
+select distinct
+    c.nome
+from
+    compagnia c,
+    ArrPart ap
+where
+    ap.comp = c.nome;
+
+and c.fondazione is not null
