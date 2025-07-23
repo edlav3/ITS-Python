@@ -1,20 +1,24 @@
-create domain CodiceFiscale as char check (value ~ '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$');
+create domain CodiceFiscale as char(16) check (value ~ '^[A-Z0-9]{16}$');
 
-create domain PartitaIva as char check (value ~ '^[0-9]{11}$');
+create domain PartitaIva as char(11) check (value ~ '^[0-9]{11}$');
 
 create domain IntGEZ as integer check (value >= 0);
 
 create domain RealGEZ as numeric check (value >= 0);
 
 create domain RealBzo as numeric check (
-    value > 0
-    and value < 1
+    value >= 0
+    and value <= 1
 );
 
-create type Indirizzo (
-    via as varchar(50),
-    civico as IntGEZ,
-    cap as char(5) check (value ~ '^[0-9]{5}(-[0-9]{4})?$')
+create domain Cap as char(5) check (value ~ '^[0-9]{5}(-[0-9]{4})?$');
+
+create domain stringa as varchar;
+
+create type Indirizzo as (
+    via stringa,
+    civico IntGEZ,
+    cap Cap
 );
 
 
@@ -27,10 +31,9 @@ create type statoOrdine as enum(
 
 create domain Telefono as varchar (10);
 
-create domain Email as varchar check (value ~ '%^[A-Za-z0-9._%\-+!#$&/=?^|~]+@[A-Za-z0-9.-]+[.][A-Za-z]+$%');
+create domain Email as varchar check
+    (value ~ '^[A-Za-z0-9._%\-+!#$&/=?^|~]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$');
 
-
-create domain stringa as varchar;
 
 
 create table nazione (
@@ -50,27 +53,25 @@ create table citta (
 	regione stringa not null,
 	nazione stringa not null,
 	unique (nome, regione, nazione),
-	foreign key (regione, nazione)
-		references regione(nome, nazione)
+	foreign key (regione, nazione) references regione(nome, nazione)
 );
 
 create table direttore (
     nome stringa not null,
     congome stringa not null, 
-    cf CodiceFiscale not null,
+    cf CodiceFiscale primary key,
     servizio IntGEZ not null, 
     nascita date not null,
     citta IntGEZ not null,
     foreign key (citta) references citta(id)
-    primary key (cf)
 );
 
 create table dipartimento (
 	nome stringa primary key,
-	indirizzo indirizzo not null
+	indirizzo indirizzo not null,
 	citta IntGEZ not null,
-	foreign key (citta) references citta(id)
-    direttore stringa not null,
+	foreign key (citta) references citta(id),
+    direttore CodiceFiscale not null,
     foreign key (direttore) references direttore(cf)
 );
 
@@ -84,6 +85,10 @@ create table fornitore (
     foreign key(citta) references citta(id)
 );
 
+create table stati (
+    stato stringa primary key
+);
+
 create table ordine (
 	codice IntGEZ primary key,
 	data_stipula date not null,
@@ -91,9 +96,9 @@ create table ordine (
 	aliquota RealBzo not null,
 	descrizione stringa not null,
 	dipartimento stringa not null,
-	foreign key (dipartimento)
-		references dipartimento(nome)
-    stato statoOrdine not null,
+	foreign key (dipartimento) references dipartimento(nome),
+    stato stringa not null,
+    foreign key (stato) references stati (stato),
     fornitore PartitaIva not null,
     foreign key (fornitore) references fornitore(iva)
 );
