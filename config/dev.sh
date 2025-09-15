@@ -18,4 +18,3 @@ nvm install 22 # Download and install Node.js:
 node -v # Print Node.js version: should print "v22.17.0".
 nvm current # Should print "v22.17.0".
 npm -v # Print npm version: should print "10.9.2".
-
