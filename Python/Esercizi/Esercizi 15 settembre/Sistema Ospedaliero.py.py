@@ -53,12 +53,12 @@ class Dottore(Persona):
     def __init__(self, first_name:str, last_name:str, specialization:str, parcel: float):
         super().__init__(first_name, last_name)
         if isinstance(specialization, str):
-            self._specialization=None
+            self._specialization=specialization
         else:
             raise ValueError("La specializzazione non è una stringa")
         
         if isinstance(parcel, float):
-            self._parcel=None
+            self._parcel=parcel
         else:
             raise ValueError("La parcella non può essere un numero intero")
     
@@ -81,10 +81,13 @@ class Dottore(Persona):
         return self._parcel
     
     def isAValidDoctor(self):
+        esito=False
         if self._age>30:
-            return f"Doctor {self._first_name} {self._last_name} is valid"
+            esito=True
+            print(f"Doctor {self._first_name} {self._last_name} is valid")
         else:
-            return f"Doctor {self._first_name} {self._last_name} is not valid"
+            print(f"Doctor {self._first_name} {self._last_name} is not valid")
+        return esito
 
     def doctorGreet(self):
         self.greet()
@@ -92,10 +95,10 @@ class Dottore(Persona):
 
 
 class Paziente(Persona):
-    _idcode: str
+    _idCode: str
     def __init__(self, first_name, last_name, idCode: str):
         super().__init__(first_name, last_name)
-        self._idcode=idCode
+        self._idCode=idCode
     
     def setidCode(self, idCode:str) -> None:
         self._idCode=idCode
@@ -136,7 +139,45 @@ class Fattura:
         self._lista.append(newPatient)
         self.getSalary()
         self.getFatture()
-        return f"Alla lista del Dottor {self._doctor.getLastName()} è stato aggiunto il paziente {newPatient.getidCode()}"
+        print(f"Alla lista del Dottor {self._doctor.getLastName()} è stato aggiunto il paziente {newPatient.getidCode()}")
     
-    def removePatient(idCode):
-        pass
+    def removePatient(self, idCode):
+        for paziente in self._lista:
+            if paziente.getidCode()==idCode:
+                self._lista.remove(paziente)
+        self.getSalary()
+        self.getFatture()
+        print(f"Alla lista del Dottor {self._doctor.getLastName()} è stato rimosso il paziente {idCode}")
+    
+
+dottore_1 = Dottore("Mario", "Rossi", "Cardiologo", 100.50)
+dottore_1.setAge(45)
+dottore_2 = Dottore("Giulia", "Bianchi", "Dermatologo", 75.25)
+dottore_2.setAge(60) 
+
+dottore_1.doctorGreet()
+dottore_2.doctorGreet()
+
+paziente_1 = Paziente("Luca", "Verdi", "P12345")
+paziente_2 = Paziente("Marco", "Neri", "P67890")
+paziente_3 = Paziente("Anna", "Gialli", "P11223")
+lista_pazienti_1 = [paziente_1, paziente_2, paziente_3]
+
+paziente_4 = Paziente("Francesca", "Blu", "P33445")
+lista_pazienti_2 = [paziente_4]
+
+fattura_1 = Fattura(lista_pazienti_1, dottore_1)
+fattura_2 = Fattura(lista_pazienti_2, dottore_2)
+
+print(f"Salario Dottore1: {fattura_1.getSalary()} euro!")
+print(f"Salario Dottore2: {fattura_2.getSalary()} euro!")
+
+paziente_rimosso = paziente_1
+fattura_1.removePatient(paziente_rimosso.getidCode())
+fattura_2.addPatient(paziente_rimosso)
+
+print(f"Salario Dottore1: {fattura_1.getSalary()} euro!")
+print(f"Salario Dottore2: {fattura_2.getSalary()} euro!")
+
+guadagno_totale = fattura_1.getSalary() + fattura_2.getSalary()
+print(f"In totale, l'ospedale ha incassato: {guadagno_totale} euro!")
