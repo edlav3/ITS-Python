@@ -1,6 +1,20 @@
 {
   "users": [
     {
+      "id": "1",
+      "nome": "Mario",
+      "cognome": "Rossi",
+      "email": "mario.rossi@example.com",
+      "telefono": "3331234567"
+    },
+    {
+      "id": "2",
+      "nome": "Laura",
+      "cognome": "Bianchi",
+      "email": "laura.bianchi@example.com",
+      "telefono": "3478901234"
+    },
+    {
       "id": "3",
       "nome": "Giuseppe",
       "cognome": "Verdi",
@@ -69,5 +83,22 @@
       "body": "Roba da nerd qwerty"
     }
   ],
-  "comments": []
+  "comments": [],
+  "tasks": [
+    {
+      "id": "1",
+      "text": "Imparare le basi di React",
+      "completed": true
+    },
+    {
+      "id": "3",
+      "text": "Studiare Bootstrap 5",
+      "completed": false
+    },
+    {
+      "id": "8b55",
+      "text": "qwe",
+      "completed": false
+    }
+  ]
 }
