@@ -36,7 +36,7 @@ create domain Email as varchar check
 
 
 
-create table nazione (
+create table nazione ( 
 	nome stringa primary key
 );
 
@@ -48,7 +48,8 @@ create table regione (
 );
 
 create table citta (
-	id IntGEZ primary key,
+	id serial primary key, -- serial indica una colonna di valori che genera automaticamente valori unici,
+                        --incrementa un valore per ogni riga nella tabella
 	nome stringa not null,
 	regione stringa not null,
 	nazione stringa not null,
@@ -102,3 +103,7 @@ create table ordine (
     fornitore PartitaIva not null,
     foreign key (fornitore) references fornitore(iva)
 );
+
+
+select extract ('year' from age(current_date, nascita)) from direttore where direttore.cf="ecc";
+-- con questa riga di codice, ottengo gli anni dei direttori con cf = "ecc"
