@@ -19,11 +19,11 @@ n= "00a5cae65abe0b036c27b740326e37"+\
 
 decimale = int(n,16) # trasformazione del numero esadecimale a decimale
 M="Ciao come va?.."
-Mi=int(M.encode("utf-8").hex(), 16)
-print(Mi)
+me=int(M.encode("utf-8").hex(), 16)
+print(me)
 e=3
 
-c=pow(Mi,e,decimale) # cifratura del messaggio
+c=pow(me,e,decimale) # cifratura del messaggio: elevazione dell'esadecimale per l'esponente e con modulo 'decimale'
 
 print(c)
 
@@ -46,5 +46,14 @@ d="1ba1d10f1fac8092069e8ab3125e9c"+\
    "ccccde926e7ac9fe69e20f520990f00b"
 
 d = int(d,16) # trasformazione esadecimale --> decimale
-decifrato= pow(c,d,decimale) #decifratura del messaggio
+print("---------------------------")
+print(f"Potenza:{d}")
+print("---------------------------")
+decifrato= pow(c,d,decimale) #decifratura del messaggio: m = c^d mod n
 print(decifrato)
+
+lunghezza_byte=(decifrato.bit_length())
+mess_decifrato_bytes=decifrato.to_bytes(lunghezza_byte, 'big')
+originale= mess_decifrato_bytes.decode('utf-8')
+
+print(originale)
