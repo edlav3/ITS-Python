@@ -1,0 +1,41 @@
+{
+    "persona": {
+      "nome": "Luca",
+      "cognome": "Bianchi",
+      "eta": 30,
+      "indirizzo": {
+        "via": "Via Roma 123",
+        "città": "Milano",
+        "cap": "20100"
+      },
+      "telefono": [
+        {
+          "tipo": "cellulare",
+          "numero": "3451234567"
+        },
+        {
+          "tipo": "fisso",
+          "numero": "0287654321"
+        }
+      ]
+    },
+    "lavoro": {
+      "azienda": "TechCorp",
+      "ruolo": "Sviluppatore",
+      "anno_inizio": 2018,
+      "progetti": [
+        {
+          "nome": "Progetto Alpha",
+          "data_inizio": "2022-01-15",
+          "data_fine": "2023-06-30",
+          "tecnologie": ["Java", "Spring", "MySQL"]
+        },
+        {
+          "nome": "Progetto Beta",
+          "data_inizio": "2023-07-01",
+          "data_fine": null,
+          "tecnologie": ["React", "Node.js", "MongoDB"]
+        }
+      ]
+    }
+  }

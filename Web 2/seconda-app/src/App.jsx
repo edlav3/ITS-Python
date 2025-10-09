@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import './App.css'
-import ToDoApp from './src/Esercizi/ToDoApp.jsx'
+import TodoApp from './ToDoEsercizio/ToDoApp'
+import MainComponent from './Use Context/UseContext'
+import ProvaRoute from './Routes/ProvaRoute'
+
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-     <ToDoApp></ToDoApp>
+    <ProvaRoute></ProvaRoute>
     </>
   )
 }

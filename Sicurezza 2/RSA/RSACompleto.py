@@ -45,14 +45,14 @@ messaggio_decifrato_intero = pow(messaggio_cifrato, esponente_privato, modulo)
 print("Messaggio decifrato (intero):", messaggio_decifrato_intero)
 
 # Conversione dell'intero decifrato in byte
-lunghezza_byte = (messaggio_decifrato_intero.bit_length() + 7) // 8
-messaggio_decifrato_bytes = messaggio_decifrato_intero.to_bytes(lunghezza_byte, 'big')
+lunghezza_byte = (messaggio_decifrato_intero.bit_length()+7) // 8   # bit_lenght() mi dice quanti bit servono per rappresentare il numero
+                                                                    # arrotondo a multipli di 8 per ottenere il numero di byte
+messaggio_decifrato_bytes = messaggio_decifrato_intero.to_bytes(lunghezza_byte, 'big') #to_byte() trasforma l'intero 'lunghezza_byte' in una sequenza di byte lunga esattamente lunghezza_byte
 
 # Conversione da byte a stringa UTF-8
 messaggio_originale = messaggio_decifrato_bytes.decode('utf-8')
 
 print("Messaggio originale:", messaggio_originale)
-
 
 
 

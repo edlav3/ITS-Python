@@ -84,21 +84,5 @@
     }
   ],
   "comments": [],
-  "tasks": [
-    {
-      "id": "1",
-      "text": "Imparare le basi di React",
-      "completed": true
-    },
-    {
-      "id": "3",
-      "text": "Studiare Bootstrap 5",
-      "completed": false
-    },
-    {
-      "id": "8b55",
-      "text": "qwe",
-      "completed": false
-    }
-  ]
+  "tasks": []
 }

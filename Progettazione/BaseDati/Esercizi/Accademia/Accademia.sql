@@ -1,5 +1,3 @@
--- Creazione dei domini
-
 create type Strutturato as 
   enum('Ricercatore', 'Professore Associato', 'Professore Ordinario');
 
