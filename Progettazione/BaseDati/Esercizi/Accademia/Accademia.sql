@@ -1,3 +1,7 @@
+begin transaction;
+
+-- Creazione dei domini
+
 create type Strutturato as 
   enum('Ricercatore', 'Professore Associato', 'Professore Ordinario');
 
@@ -89,3 +93,5 @@ create table Assenza (
   unique (persona, giorno),
   foreign key (persona) references Persona(id) deferrable
 );
+
+commit;
