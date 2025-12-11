@@ -80,17 +80,27 @@ def parse_tcpdump_logs(filename):
 
     return page_counts, completed_requests
 
-# --- MAIN EXECUTION ---
+# --- MAIN EXECUTION (Updated) ---
 if __name__ == "__main__":
     try:
         counts, times = parse_tcpdump_logs(FILE_PATH)
 
         print("\n" + "="*40)
-        print(" TOP VISITED PAGES")
+        print(" ALL VISITED PAGES AND COUNTS")
         print("="*40)
-        # Sort by most common
-        for page, count in counts.most_common():
-            print(f"{count:4} visits: {page}")
+        
+        # Ottiene tutte le pagine ordinate per frequenza (dalla più visitata alla meno visitata)
+        all_pages_sorted = counts.most_common()
+        
+        # Stampa tutte le pagine visitate, evidenziando le Top 5
+        print("RANK | Visits | Page")
+        print("---------------------------------------")
+        for index, (page, count) in enumerate(all_pages_sorted):
+            rank = index + 1
+            if rank <= 5:
+                 print(f" {rank:<3} | {count:6} | {page:<20} (TOP 5)")
+            else:
+                 print(f" {rank:<3} | {count:6} | {page:<20}")
 
         print("\n" + "="*40)
         print(" AVERAGE RESPONSE TIMES (ms)")
@@ -101,11 +111,15 @@ if __name__ == "__main__":
         for req in times:
             page_times[req['url']].append(req['time_ms'])
             
-        for page, time_list in page_times.items():
+        # Ordina per pagina (alfabeticamente) per una visualizzazione pulita
+        for page in sorted(page_times.keys()):
+            time_list = page_times[page]
             avg_time = sum(time_list) / len(time_list)
-            print(f"{page:<25} : {avg_time:.2f} ms")
+            print(f"{page:<25} : {avg_time:.2f} ms ({len(time_list)} risposte)")
 
     except FileNotFoundError:
-        print("Error: File not found. Make sure 'dump.txt' is in the same folder.")
+        print(f"Error: File '{FILE_PATH}' not found. Make sure it's in the same folder.")
     except Exception as e:
         print(f"An error occurred: {e}")
+
+
