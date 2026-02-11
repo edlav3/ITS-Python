@@ -366,8 +366,8 @@ def show_items():
     return render_template('dynamic.html', items=items)
 
 
-myip = "172.25.77.77"
-myport = 32005
+myip = "10.8.0.16"
+myport = 32003
 
 if __name__ == '__main__':
     with app.app_context():
